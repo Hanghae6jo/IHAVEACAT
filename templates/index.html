@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@300;400&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>🐈나는 고양이 있어</title>
+
+    <!-- bulma css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/79ab9960f1.js" crossorigin="anonymous"></script>
+
+    <!-- Google Font : Logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@300&family=Noto+Serif+KR:wght@200&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+
+<style>
+    *{
+        font-family: 'Single Day', cursive;
+    }
+    /* fixed color */
+    :root {
+        --blue: #243665;
+        --green: #8BD8BD;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    /* header CSS*/
+    .main__header {
+        width: 100%;
+        height: 150px;
+
+        background: lightpink;
+
+        display: flex;
+        justify-content: space-between;
+        align-content: flex-start;
+
+        margin-bottom: 100px;
+    }
+
+    .main__header .header_wrap{
+        width: 60%;
+        min-width: 710px;
+        height: 150px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    .main__header .header_wrap .logo_wrap{
+        width: 200px;
+    }
+    .main__header .header_wrap .logo_wrap img{
+        margin-top: 25px;
+    }
+
+    .header__title {
+        height: 60px;
+        margin-top: 85px;
+        line-height: 24px;
+        text-align: right;
+    }
+
+    .header__title span {
+        font-size: 32px;
+        color: white;
+
+    }
+
+    /* 로그아웃 버튼 */
+    .logout-btn {
+        margin-top: 50px;
+        margin-right: 30px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .logout-btn button {
+        background-color: white;
+
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+
+        font-size: 20px;
+    }
+
+    .logout-btn span {
+        color: white;
+    }
+
+    /* main */
+    /* 글 작성하기 버튼 */
+
+    .post-btn {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 30px;
+        margin-top: 20px;
+    }
+
+    .post-btn button,
+    .logout-btn button {
+        border: none;
+    }
+
+    .post-btn button:hover,
+    .logout-btn button:hover {
+        background: lightpink;
+        cursor: pointer;
+    }
+
+    .post-btn button:focus,
+    .logout-btn button:focus {
+        border: none;
+        outline: none;
+    }
+
+    .post-btn i {
+        color: white;
+    }
+
+    .logout-btn button {
+        background: hotpink;
+
+    }
+
+    /* main -- title  */
+    .post-columns {
+    }
+
+    .post-columns__intro {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 50px;
+        font-family: 'Gaegu', cursive;
+        color: hotpink;
+        margin-bottom: 100px;
+    }
+
+    .post-columns__intro p:first-child {
+        margin-top: 50px;
+
+    }
+
+    .post-columns__intro p {
+        font-size: 18px;
+        font-weight: 400;
+        margin-top: 10px;
+        color: #858585;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .post-btn button {
+        background-color: hotpink;
+
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        border: none;
+
+        font-size: 20px;
+    }
+
+    /* main -- cards  */
+    .post-columns__card {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+
+        width: 70vw;
+        margin: 0 auto;
+    }
+
+    .post-columns__card a{
+        width: 30%;
+        height: 25vw;
+        margin-bottom: 3%;
+    }
+    .post-btn{
+        display: block;
+    }
+    .post-btn button{
+        width: 250px;
+        font-family: 'Single Day', cursive;
+        color: #FFFFFF;
+    }
+    .card_box{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card_box:hover {
+        transform: scale(1.1, 1.1);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .card_box img {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .card-body {
+        height: 80px;
+        width: 100%;
+        background: rgba(255,255,255,0.5);
+        position: absolute;
+        bottom: 0;
+        padding: 15px 20px;
+        text-wrap: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .card-body h5 {
+        width: 100%;
+        height: 30px;
+        font-size: 20px;
+        font-weight: 800;
+        text-wrap: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 5px;
+    }
+
+    .card-body .name_wrap{
+        display: flex;
+        justify-content: space-between;
+    }
+    .card-body p {
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .card-body .card-price{
+        font-size: 12px
+    }
+    .card-body p:nth-child(2),
+    .card-body p:nth-child(3) {
+        margin-bottom: 5px;
+    }
+
+    /* 모달 창 CSS 시작 */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .modal__overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: 100%;
+        /* absolute : 요소의 배치 시 부모 요소가 기준이 됨 */
+        position: absolute;
+    }
+
+    .modal__content {
+        /* absolute : 요소의 배치 시 요소 자기자신을 기준으로 움직임 */
+        /* 필요 시 z-index 조정합시다! */
+        position: fixed;
+        width: 800px;
+        height: 650px;
+        background-color: lightpink;
+
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        padding: 30px;
+
+        border-radius: 30px;
+
+        margin-top: 15px;
+    }
+
+    /* modal 열고 닫을 때 추가-제거할 클래스 */
+    .hidden {
+        display: none;
+    }
+
+    .save-page__post {
+        display: flex;
+        width: 95%;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        margin-left: 10px;
+    }
+
+    .save-page__post p:first-child {
+        display: flex;
+        justify-content: center;
+        font-size: 80px;
+        font-weight: bolder;
+        font-family: 'Gaegu', cursive;
+        color: white;
+        margin-top: 15px;
+    }
+
+    .intro_kor {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: var(--blue);
+        margin-top: 5px;
+    }
+
+    .save-page__post--form {
+        margin-top: 30px;
+    }
+
+    .form-ctrl {
+        margin-bottom: 5px;
+        width: 700px
+    }
+
+    .save-page__btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .save-page__btn--save {
+        margin-right: 20px;
+    }
+
+    .blank {
+        height: 50px;
+        background-color: white;
+    }
+
+    /* 모달 창 CSS 마무리 */
+
+    /* anchor style */
+    a {
+        color: var(--blue);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--blue);
+        text-decoration: none;
+    }
+
+</style>
+<script>
+
+    $(document).ready(function () {
+        listing()
+    })
+
+    function listing() {
+        $.ajax({
+            type: "GET",
+            url: "/main",
+            data: {},
+            success: function (response) {
+                let catlist = response['all_cat_list']
+                for (let i = 0; i < catlist.length; i++) {
+                    let index = catlist[i]['num']
+                    let title = catlist[i]['title']
+                    let catname = catlist[i]['catname']
+                    let name = catlist[i]['name']
+                    let img = catlist[i]['img']
+
+
+                    let temp_html = `
+                                <a href="/main/${index}" style="display=inline;">
+                                    <div class="card_box">
+                                        <img alt="${title}"
+                                             src="../static/${img}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                            <div class="name_wrap">
+                                                <p class="card-category">${catname}</p>
+                                                <p class="card-price">―${name}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>`
+                    $('#cards-box').prepend(temp_html);
+
+                }
+            }
+        })
+    }
+
+    /* 모달 창 JS 코드 시작 */
+
+    /* 파일 업로드 코드 */
+
+
+    /* 포스트 저장 데이터 보내기 */
+    function savePost() {
+        let file = $('#file')[0].files[0]
+        let form_data = new FormData();
+
+        let title = $('#post-title').val();
+        let catname = $('#post-catname').val();
+        let name = $('#post-name').val();
+        let comment = $('#post-comment').val();
+
+        form_data.append("file_give", file)
+        form_data.append("title_give", title)
+        form_data.append("catname_give", catname)
+        form_data.append("name_give", name)
+        form_data.append("comment_give", comment)
+
+        if (!file)
+        {
+            alert("사진을 업로드 해주세요!")
+        }
+        if (title.trim() === "")
+        {
+            alert("제목을 입력 해주세요!")
+            title.focus()
+        }
+       if (catname.trim() === "")
+        {
+            alert("고양이 이름을 입력 해주세요!")
+            catname.focus()
+        }
+       if (name.trim() === "")
+        {
+            alert("작성자 이름을 입력해주세요!")
+            name.focus()
+        }
+       if (comment.trim() === "")
+        {
+            alert("한줄 코멘트를 작성해주세요!")
+            comment.focus()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/savepost",
+            data: form_data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response["msg"])
+                $('.modal').addClass("hidden");
+                window.location.reload()
+            }
+        });
+    }
+
+    /* 모달 창 JS 코드 마무리 */
+
+
+    /* 로그아웃 함수 */
+    function logout() {
+        $.removeCookie('mytoken', {path: '/'});
+        alert('로그아웃!!')
+        window.location.href = "/login"
+    }
+
+</script>
+
+<body>
+
+<!-- header -->
+<header class="main__header">
+    <div class="header_wrap">
+    <!-- btn element -->
+        <a href="/" class="logo_wrap">
+            <img src="/static/ddongcat.png"/>
+        </a>
+        <div class="header__title">
+            <span>나만고양이없어사람들다<br>고양이있는데진짜나만없어</span>
+        </div>
+    </div>
+    <div class="logout-btn" style="width: 100px; margin-top: 90px">
+        <button type="button" class="main-header__logout" style="font-size: 14px;width: 100px; background: none; line-height: 14px" onclick="logout()">
+            <span>고양이없는<br>쓸쓸한퇴갤</span>
+        </button>
+
+    </div>
+</header>
+
+<!-- main -->
+<main class="title post-columns">
+    <!-- main : posting-button -->
+    <!-- main : title -->
+    <div class="post-columns__intro">
+        <span>나는 고양이 있어!</span>
+        <p>내 고양이가 세상에서 제일 귀여워!</p>
+        <p>지금 바로 모두에게 당신의 고양이를 자랑하세요!</p>
+        <div class="post-btn">
+            <button type="button" class="main-body__post">
+                내고양이자랑
+            </button>
+        </div>
+    </div>
+    <!-- main : columns -->
+    <div class="col post-columns__card" id="cards-box">
+
+        <!-- temp_html 삽입-->
+    </div>
+</main>
+
+<footer class="blank">
+
+</footer>
+
+
+<!-- 모달 창 : 포스트 작성 양식 코드 시작 -->
+<div class="modal save-page hidden" id="modal-post">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+        <div class="save-page__post">
+            <!-- form title  -->
+            <p>나는 고양이 있어!</p>
+            <p class="intro_kor">나의 귀여운 고양이를 자랑해주세요!</p>
+            <div class="save-page__post--form">
+
+                <!-- 파일 첨부 : img 파일형식 제한 -->
+                <div class="filebox form-ctrl">
+                    <label class="file-label">
+                        <input id="file" class="file-input" type="file" accept=".jpg, .jpeg, .png" name="resume">
+                        <span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span>
+                        <span class="file-label">사진 첨부하기🐾</span></span>
+                    </label>
+                </div>
+
+                <!-- input // 제목 -->
+                <div>
+                    <input id="post-title" class="input is-primary form-ctrl" type="text" placeholder="제목을 입력하세요.">
+                </div>
+
+                <!-- select // 고양이이름 작성 -->
+                <div>
+                <input id="post-catname" class="input is-primary form-ctrl" type="text" placeholder="고양이의 이름을 입력하세요.">
+                </div>
+                <!-- input // 작성자이름 작성 -->
+                <div><input id="post-name" class="input is-primary form-ctrl" type="text"
+                            required placeholder="작성자명을 입력하세요."></div>
+
+                    <div maxlength="30">
+                      <textarea id="post-comment" class="textarea is-success" placeholder="내용을 입력해주세요."></textarea>
+                    </div>
+
+            </div>
+            <!-- 버튼 뭉치 : 저장하기 + 취소하기 -->
+            <div class="save-page__btn">
+                <!-- 저장하기 버튼 -->
+                <button class="button is-link save-page__btn--save" onclick="savePost()">저장하기</button>
+                <!-- 취소하기 버튼 -->
+                <button class="button is-danger save-page__btn--cancel">취소하기</button>
+            </div>
+        </div>
+        <!-- 모달 창 : 포스트 작성 양식 코드 마무리 -->
+    </div>
+</div>
+
+</body>
+<!-- JS 코드 시작 // 모달 창 : 열고 닫기 -->
+<script>
+    const openButton = document.getElementsByClassName("main-body__post");
+    const modal = document.querySelector(".modal");
+    const overlay = modal.getElementsByClassName("modal__overlay");
+    const closeBtn = modal.getElementsByClassName("save-page__btn--cancel");
+
+    function openModal() {
+        modal.classList.remove("hidden");
+    }
+
+    function closeModal() {
+        modal.classList.add("hidden");
+    }
+
+    closeBtn[0].addEventListener("click", closeModal);
+    overlay[0].addEventListener("click", closeModal);
+    openButton[0].addEventListener("click", openModal);
+
+</script>
+<!-- JS 코드 마무리 // 모달 창 : 열고 닫기 -->
+</html>

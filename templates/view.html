@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@300;400&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <title>🐈나는 고양이 있어!</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <!-- bulma css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/79ab9960f1.js" crossorigin="anonymous"></script>
+
+    <!-- Google Font : Logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@300&family=Noto+Serif+KR:wght@200&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+<style>
+    *{
+        font-family: 'Single Day', cursive;
+    }
+    /* fixed color */
+    :root {
+        --blue: #243665;
+        --green: #8BD8BD;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+         }
+
+    /* header CSS*/
+    .main__header {
+        width: 100%;
+        height: 150px;
+
+        background: lightpink;
+
+        display: flex;
+        justify-content: space-between;
+        align-content: flex-start;
+
+        margin-bottom: 100px;
+    }
+
+    .main__header .header_wrap{
+        width: 60%;
+        min-width: 710px;
+        height: 150px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    .main__header .header_wrap .logo_wrap{
+        width: 200px;
+    }
+    .main__header .header_wrap .logo_wrap img{
+        margin-top: 25px;
+    }
+
+    .header__title {
+        height: 60px;
+        margin-top: 85px;
+        line-height: 24px;
+        text-align: right;
+    }
+
+    .header__title span {
+        font-size: 32px;
+        color: white;
+
+    }
+
+    .main-info {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+
+        margin-bottom : 100px;
+    }
+
+    .main-info__img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .main-info__img img{
+        border-radius: 50px;
+    }
+
+    .main-info__infos {
+        display: flex;
+        width: 500px;
+        flex-direction: column;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    .main-info__infos h1 {
+        display : flex;
+        flex-direction: column;
+        font-size: 30px;
+        font-weight: 700;
+        margin-top : 20px;
+        margin-bottom : 20px;
+    }
+
+    .main-info__infos--detail {
+        font-size: 18px;
+        display : flex;
+        flex-direction: column;
+        font-weight: 500;
+        color : dimgrey;
+    }
+
+    .main-info__infos--detail i {
+        margin-right: 20px;
+    }
+
+    .main-info__infos--detail span {
+        margin-bottom : 10px;
+    }
+
+    .main-info__infos--detail span:first-child i {
+        color: #0078dc;
+    }
+
+    .main-info__infos--detail span:nth-child(2) i {
+        color: #ffb30a;
+    }
+
+    .main-info__infos--detail span:nth-child(3) i {
+        color: #ff6ea1;
+    }
+
+    .main-info__infos--detail span:last-child i {
+        color: #ffcf11;
+    }
+
+
+    .wrap_comment {
+        width: 95%;
+        max-width: 800px;
+        margin: 0px auto 0px auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrap_comment > input {
+        width: 100%;
+        border-radius: 50px;
+        border: solid 1px;
+        border-color: darkgray;
+
+        margin-right: 10px;
+        padding: 8px;
+    }
+
+    .wrap_comment > button {
+        border-radius: 70%;
+        padding: 8px 13px;
+        border: none;
+
+        color: white;
+        background: #243665;
+    }
+
+    .comment_list {
+        width: 95%;
+        max-width: 800px;
+        margin: 30px auto 10px auto;
+    }
+
+    .comment_list > input {
+
+        width: 95%;
+        max-width: 800px;
+
+        margin: auto;
+
+        border: none;
+        border-bottom: 1px solid #CCC;
+        color: #555;
+
+        pointer-events: none;
+    }
+
+    .comment_write {
+        width: 100%;
+        height: 70px;
+        padding-left: 30px;
+        border-radius: 0;
+    }
+
+    .comment:focus {
+        outline: none;
+        background-color: lightpink;
+    }
+    #textarea-post{
+        display: block;
+        position: relative;
+        margin-top: 50px;
+    }
+    #textarea-post>input{
+
+        border-radius: 0;
+        margin: 0;
+    }
+
+    #textarea-post button{
+        background: lightpink;
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        position: absolute;
+        top: 5px;
+        right: 25px;
+    }
+    .wrap_comment > button:hover {
+        background: #ffc533;
+        cursor: pointer;
+        color: black;
+    }
+
+    .comment--css {
+        display: flex;
+        align-content: center;
+        height: 50px;
+        font-size: 20px;
+        color: #9a8e7b;
+    }
+
+    .comment-box {
+        display:none;
+    }
+
+    .comment_wrap{
+        width: 91%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .time{
+        display: inline-block;
+        text-align: right;
+    }
+    .comment_content{
+        display: inline-block;
+    }
+
+    .comment--css i{
+        margin-left : 10px;
+        margin-right : 20px;
+        transform: scaleX(-1);
+    }
+
+    .is-sparta {
+        color: #e8344e !important;
+    }
+
+
+    .blank {
+        height: 50px;
+        background-color: white;
+    }
+
+        #comment{
+            color: #9a8e7b;
+            margin: 50px auto;
+        }
+        #comment .inner{
+            width: 100%;
+            margin: 0 auto;
+        }
+        #comment .inner hr{
+            width: 100%;
+            height: 10px;
+            background-color: #64625f; opacity: 1
+        }
+        #comment .inner>div{
+            padding: 0 20px;
+        }
+
+        #comment .inner .subject{
+            font-size: 48px;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: flex-end;
+            margin: 20px auto;
+        }
+        #comment .inner .subject .title{
+            font-weight: 900;
+        }
+        #comment .inner .subject .writer{
+            font-size: 18px;
+        }
+
+        #comment .inner .content{}
+        #comment .inner .content .cat_name_box{
+            width: 300px;
+            height: 200px;
+            margin: 10px auto;
+            background: url("../static/text_balloon.png") no-repeat center center;
+            background-size: cover;
+            text-align: center;
+        }
+        #comment .inner .content .cat_name_box .cat_name{
+            font-size: 48px;
+            color: #FFFFFF;
+            line-height: 200px;
+            font-weight: 900;
+        }
+        #comment .inner .content .img_box{
+            width: 80%;
+            margin: 0 auto;
+        }
+        #comment .inner .content .img_box img{
+            width: 100%;
+        }
+        #comment .inner .content .text_box{
+            width: 80%;
+            margin: 30px auto 70px;
+        }
+
+        #comment .inner .reaction_btn_wrap{
+            width: 80%;
+            height: 60px;
+            margin: 20px auto;
+        }
+        #comment .inner .reaction_btn_wrap .reaction_btn_box{
+            float: right
+        }
+          #comment .inner .reaction_btn_wrap .reaction_btn_box .btn_box{
+            width: 60px; height: 60px;
+            background: lightpink;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        #comment .inner .reaction_btn_wrap .reaction_btn_box .btn_box button{
+            width: 60px; height: 60px;
+            border: none;
+            box-sizing: border-box;
+            border-radius: 30px;
+            font-size: 10px;
+            line-height: 80px;
+            color: #FFFFFF;
+        }
+        #comment .inner .reaction_btn_wrap .reaction_btn_box .btn_box .good_btn{}
+        #comment .inner .reaction_btn_wrap .reaction_btn_box .btn_box .comment_btn{
+            background: url("../static/text.png") center 30% no-repeat;
+        }
+        #comment .inner .reaction_btn_wrap .reaction_btn_box .btn_box .list_btn{
+            background: url("../static/list.png") center 30% no-repeat;
+        }
+
+
+</style>
+
+<script>
+    $(document).ready(function () {
+        get_posts()
+    })
+
+    function comment_show() {
+        if ($("#comment-box").css("display") == "none") {
+            $("#comment-box").show();
+        } else {
+            $("#comment-box").hide();
+        }
+    }
+    function post() {
+        let comment = $("#input-post").val()
+        let today = new Date().toISOString()
+        $.ajax({
+            type: "POST",
+            url: "/comment",
+            data: {
+                comment_give: comment,
+                date_give: today
+            },
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        })
+    }
+
+    function time2str(date) {
+        let today = new Date()
+        let time = (today - date) / 1000 / 60  // 분
+
+        if (time < 60) {
+            return parseInt(time) + "분 전"
+        }
+        time = time / 60  // 시간
+        if (time < 24) {
+            return parseInt(time) + "시간 전"
+        }
+        time = time / 24
+        if (time < 7) {
+            return parseInt(time) + "일 전"
+        }
+        return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+    }
+
+            function get_posts() {
+                $("#comment_list").empty()
+                $.ajax({
+                    type: "GET",
+                    url: "/comment",
+                    data: {},
+                    success: function (response) {
+                        if (response["result"] == "success") {
+                            let posts = response["posts"]
+                            for (let i = 0; i < posts.length; i++) {
+                                let post = posts[i]
+                                let time_post = new Date(post["date"])
+                                let time_before = time2str(time_post)
+                                let html_temp = `<div class="comment comment--css" id="${post["_id"]}">
+                                                <p>
+                                                <i class="fa-solid fa-comment-dots"></i>
+                                                <div class="comment_wrap">
+                                                    <div class="comment_content">${post['comment']}</div>
+                                                    <div class="time">| ${time_before}</div>
+                                                </div>
+                                            </p>
+                                            <br>
+                                        </div>`
+                                $("#comment_list").append(html_temp)
+                            }
+                        }
+                    }
+                })
+            }
+
+
+</script>
+
+</head>
+<body>
+<!-- header -->
+<header class="main__header">
+    <div class="header_wrap">
+    <!-- btn element -->
+        <a href="/" class="logo_wrap">
+            <img src="/static/ddongcat.png"/>
+        </a>
+        <div class="header__title">
+            <span>노트북을 박살냈는데도<br>귀여우면 어쩌잔거야 이똥고양이야</span>
+        </div>
+    </div>
+</header>
+
+<!-- main : 고양이 사진 및 정보  -->
+<!-- 고양이 사진  -->
+
+
+    {% for num in data %}
+                    <div id="comment">
+            <div class="inner">
+
+                <div class="subject">
+                    <span class="title">
+                        {{num.title}}
+                    </span>
+                    <span class="writer">
+                        {{num.name}}
+                    </span>
+                </div>
+
+                <hr>
+
+                <div class="content">
+                    <div class="cat_name_box">
+<!--                                                백그라운드이미지로말풍선넣어주기-->
+                        <span class="cat_name">
+                            {{num.catname}}
+                        </span>
+                    </div>
+                    <div class="img_box">
+                        <img src="/static/{{num.img}}"/>
+                    </div>
+                    <div class="text_box">
+                        {{num.comment}}
+                    </div>
+                </div>
+
+               <div class="reaction_btn_wrap">
+                   <div class="reaction_btn_box">
+                       <div class="btn_box">
+                       <button class="comment_btn" onclick="comment_show()">댓글열기</button>
+                       </div>
+                       <div class="btn_box">
+                      <button class="list_btn" onclick="location.href='/'">리스트</button>
+                       </div>
+                 </div>
+               </div>
+
+    {% endfor %}
+<hr>
+
+
+
+<!-- main : comment  -->
+<div class="comment-box" id="comment-box">
+    <div class="wrap_comment" id="textarea-post">
+        <input class="comment_write" id="input-post" type="text" placeholder="귀여우니 따봉을 날려주세요">
+        <button onclick="post()">작성</button>
+    </div>
+
+
+<!-- main : comment_post -->
+    <div id = "comment_list"class="comment_list">
+        <div class="comment">
+            <p> 닉네임 : 강추합니다!!"</p><br>
+        </div>
+        <div class="comment">
+            <p> 닉네임 : 강추합니다!!"</p><br>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+    <footer class="blank">
+
+    </footer>
+
+</div>
+</div>
+</body>
+</html>
